@@ -13782,8 +13782,9 @@ Think about the pros and cons of adding more training points based on if the tra
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><strong>Answer: </strong></p>
-<p>The k-fold cross validation technique basically splits the data into k sets and the estimator which is trained from the k-1 datasets is validated with the kth dataset. This particular algorithmn is run k times to achieve all the possible combinations of the training and validation data out of the dataset.</p>
-<p>During grid search, while using the split out training and validation data for different combinations of hyperparameters, the model might get skewed based on the characteristics of that particular combination of training and validation data. If the data in this combination of training and validation set does not represent the real-world scenario, we might end up having a model which is over-fitting and that does not work for the real-world prediction schemes. k-fold cross validations helps alleviate this problem to a certain level wherein the combination of the training and the testing set is changed over k runs of the training leading to training combinations which represents the dataset better.</p>
+<p>The k-fold cross validation technique basically splits the training data into k sets and the estimator which is trained from the k-1 datasets is validated with the kth dataset.</p>
+<p>We first split our data into train and test and then apply k-fold on the train dataset. Now after this step we train our model on (k-1) folds and use 1 fold for cross-validation. This process is repeated k times, each time with a different cross-validation set. The average cross-validation score is used to check the performance of the model. Once you have selected the best parameters using gridSearch along with k-fold cross-validation, we will use the test set to check the final performance of the model.</p>
+<p>If we use a single validation set, we end up using a part of the training set. k-fold CV solves this problem.</p>
 
 </div>
 </div>
